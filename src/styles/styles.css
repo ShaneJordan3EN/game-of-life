@@ -1,0 +1,55 @@
+.square {
+    background: #fff;
+    border: 1px solid #999;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 64px;
+    height: 68px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 68px;
+}
+
+.gridButton {
+    background: green;
+    border: 1px solid #999;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 64px;
+    height: 68px;
+    margin-right: 8px;
+    margin-top: 8px;
+    padding: 3;
+    text-align: center;
+    width: 68px;
+}
+
+.startButton {
+    background: blue;
+    border: 1px solid #999;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 64px;
+    height: 68px;
+    margin-right: 8px;
+    margin-top: 8px;
+    padding: 3;
+    text-align: center;
+    width: 68px;
+}
+
+.stopButton {
+    background: red;
+    border: 1px solid #999;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 64px;
+    height: 68px;
+    margin-right: 8px;
+    margin-top: 8px;
+    padding: 3;
+    text-align: center;
+    width: 68px;
+}
