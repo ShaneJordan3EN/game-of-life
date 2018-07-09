@@ -3,6 +3,7 @@ import Board from './Board';
 import GridButton from './GridButton';
 import Start from './Start';
 import Stop from './Stop';
+import populate from './populate';
 import '../styles/styles.css';
 
 class App extends Component {
@@ -10,33 +11,26 @@ class App extends Component {
     super(props);
     this.state = {
       currentGridSize: 25,
-      squares: Array(25).fill(0),
+      squares: this.createArrayOfSquares(25),
     };
   }
 
   createArrayOfSquares(gridSize) {
     let i = 0;
-    let squares = Array(gridSize);
     let gridLength = Math.sqrt(gridSize);
+    let squares = Array(gridLength);
     for(let x = 0; x < gridLength; x++) {
-      for (let y = 0; y < gridLength; y++) {
-        const square = {
-           x: x,
-           y: y,
-           i: i
-        }
-        squares.push(square);
-        i++;
-      }
+      squares[x] = Array(gridLength).fill(0);
     }
+    return squares;
   }
 
-  handleClick(i){
+  handleClick(x, y){
     const squares = this.state.squares;
-    if (squares[i] === 0) {
-      squares[i] = 1
+    if (squares[x][y] === 0) {
+      squares[x][y] = 1
     } else {
-      squares[i] = 0
+      squares[x][y] = 0
     }
     this.setState({
       squares: squares,
@@ -46,8 +40,15 @@ class App extends Component {
   handleGridButtonClick(gridSize){
     this.setState({
       currentGridSize: gridSize,
-      squares: Array(gridSize).fill(0),
+      squares: this.createArrayOfSquares(gridSize),
     });
+  }
+
+  handleStartButtonClick() {
+    let squares = populate(this.state.squares);
+    this.setState({
+      squares: squares
+    })
   }
 
   render() {
@@ -55,7 +56,7 @@ class App extends Component {
       <div className="App">
         <Board
           squares={this.state.squares}
-          onClick={(i) => this.handleClick(i)}
+          onClick={(x, y) => this.handleClick(x, y)}
           gridSize={this.state.currentGridSize}
         />
         <GridButton
@@ -70,7 +71,9 @@ class App extends Component {
           gridSize={225}
           onClick={() => this.handleGridButtonClick(225)}
         />
-        <Start />
+        <Start
+          onClick={() => this.handleStartButtonClick()}
+        />
         <Stop />
       </div>
     );
