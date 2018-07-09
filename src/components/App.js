@@ -11,12 +11,11 @@ class App extends Component {
     super(props);
     this.state = {
       currentGridSize: 25,
-      squares: this.createArrayOfSquares(25),
+      squares: this.createArrayOfSquares(25)
     };
   }
 
   createArrayOfSquares(gridSize) {
-    let i = 0;
     let gridLength = Math.sqrt(gridSize);
     let squares = Array(gridLength);
     for(let x = 0; x < gridLength; x++) {
@@ -44,12 +43,29 @@ class App extends Component {
     });
   }
 
-  handleStartButtonClick() {
-    let squares = populate(this.state.squares);
+  handleStartStopButtonClick(start) {
+    this.setState(state => {
+      if (!start) {
+        clearInterval(this.intervalId);
+      } else {
+        this.intervalId = setInterval(
+          () => this.tick(),
+          1000
+        );
+      }
+    });
+  };
+
+  tick() {
+    const squares = populate(this.state.squares, this.state.currentGridSize);
     this.setState({
       squares: squares
-    })
+    });
   }
+
+  componentWillUnmount() {
+      clearInterval(this.intervalId);
+    }
 
   render() {
     return (
@@ -72,9 +88,11 @@ class App extends Component {
           onClick={() => this.handleGridButtonClick(225)}
         />
         <Start
-          onClick={() => this.handleStartButtonClick()}
+          onClick={() => this.handleStartStopButtonClick(true)}
         />
-        <Stop />
+        <Stop
+          onClick={() => this.handleStartStopButtonClick(false)}
+        />
       </div>
     );
   }

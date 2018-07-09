@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Grid, GridColumn, GridRow, Segment } from 'semantic-ui-react';
+import { Grid, Segment } from 'semantic-ui-react';
 import Square from './Square';
 
 

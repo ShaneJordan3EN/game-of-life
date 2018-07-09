@@ -1,4 +1,18 @@
-.square {
+.active {
+    background: yellow;
+    border: 1px solid #999;
+    font-size: 48px;
+    font-weight: bold;
+    line-height: 64px;
+    height: 68px;
+    margin-right: -1px;
+    margin-top: -1px;
+    padding: 0;
+    text-align: center;
+    width: 68px;
+}
+
+.inactive {
     background: #fff;
     border: 1px solid #999;
     font-size: 48px;

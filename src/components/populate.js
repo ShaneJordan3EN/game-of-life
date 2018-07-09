@@ -1,34 +1,32 @@
-const populate = (squares) => {
-//When calling this function it runs through all co-ords to check if there are any neighbours.
-//it will 100% try to grabd squares[-1][0] which doesnt exist and im trying to handle that by checking for null.
-//However im getting a 'TypeError: Cannot read property '1' of undefined' at line 10 when its called.
+const populate = (squares, gridSize) => {
+  let gridLength = Math.sqrt(gridSize);
 
-  for (let x = 0; x < squares.length; x++) {
-    for (let y = 0; y < squares[y].length; y++) {
+  for (let x = 0; x < gridLength; x++) {
+    for (let y = 0; y < gridLength; y++) {
       let neighbours = 0;
       if (squares != null) {
-        if (squares[x - 1][y + 1] != null  && squares[x - 1][y + 1] === 1) {
+        if ((x - 1) >= 0 && (y + 1) < gridLength  && squares[x - 1][y + 1] === 1) {
           neighbours++;
         }
-        if (squares[x - 1][y] != null && squares[x - 1][y] === 1) {
+        if ((x - 1) >= 0 && squares[x - 1][y] === 1) {
           neighbours++;
         }
-        if (squares[x - 1][y - 1] != null && squares[x - 1][y - 1] === 1) {
+        if ((x - 1) >= 0 && (y - 1) >= 0 && squares[x - 1][y - 1] === 1) {
           neighbours++;
         }
-        if (squares[x][y - 1] != null && squares[x][y - 1] === 1) {
+        if ((y - 1) >= 0 && squares[x][y - 1] === 1) {
           neighbours++;
         }
-        if (squares[x][y + 1] != null && squares[x][y + 1] === 1) {
+        if ((y + 1) < gridLength && squares[x][y + 1] === 1) {
           neighbours++;
         }
-        if (squares[x + 1][y + 1] != null && squares[x + 1][y + 1] === 1) {
+        if ((x + 1) < gridLength && (y + 1) < gridLength && squares[x + 1][y + 1] === 1) {
           neighbours++;
         }
-        if (squares[x + 1][y] != null && squares[x + 1][y] === 1) {
+        if ((x + 1) < gridLength && squares[x + 1][y] === 1) {
           neighbours++;
         }
-        if (squares[x + 1][y - 1] != null && squares[x + 1][y - 1] === 1) {
+        if ((x + 1) < gridLength && (y - 1) >= 0 && squares[x + 1][y - 1] === 1) {
           neighbours++;
         }
 
