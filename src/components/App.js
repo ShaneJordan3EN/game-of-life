@@ -3,6 +3,7 @@ import Board from './Board';
 import GridButton from './GridButton';
 import Start from './Start';
 import Stop from './Stop';
+import Reset from './Reset';
 import populate from './populate';
 import '../styles/styles.css';
 
@@ -67,6 +68,13 @@ class App extends Component {
       clearInterval(this.intervalId);
     }
 
+  handleResetClick() {
+    this.handleStartStopButtonClick(false);
+    this.setState({
+      squares: this.createArrayOfSquares(this.state.currentGridSize)
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -92,6 +100,9 @@ class App extends Component {
         />
         <Stop
           onClick={() => this.handleStartStopButtonClick(false)}
+        />
+        <Reset
+          onClick={() => this.handleResetClick()}
         />
       </div>
     );
