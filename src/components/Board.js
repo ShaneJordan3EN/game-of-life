@@ -4,27 +4,29 @@ import Square from './Square';
 
 
 class Board extends Component {
-  renderSquare(x, y) {
+  renderSquare(x, y, squareDiameter) {
     return (
       <Square
         value={this.props.squares[x][y]}
         onClick={() => this.props.onClick(x, y)}
+        squareDiameter={squareDiameter}
       />
     );
   }
 
   gridCreator(gridSize) {
     const gridLength = Math.sqrt(gridSize);
+    const squareDiameter = 510/gridLength;
     const grid = [];
     for (let x = 0; x < gridLength; x++) {
       const columns = [];
 
       for (let y = 0; y < gridLength; y++) {
-        columns.push(this.renderSquare(x,y));
+        columns.push(this.renderSquare(x, y, squareDiameter));
       }
 
       const row = (
-        <div className="board-row">
+        <div>
           {columns}
         </div>
       );
